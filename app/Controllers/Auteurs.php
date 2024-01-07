@@ -6,5 +6,8 @@ class Auteurs extends Controller {
         $this->view('Auteur/index');
     }
 
+    public function signup(){
+        $this->view("Authentification/signup");
+    }
 
 } 
