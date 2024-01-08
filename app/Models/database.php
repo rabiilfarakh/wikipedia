@@ -5,7 +5,7 @@ class DATABASE {
   private static $HOST = "127.0.0.1";
   private static $username = "root";
   private static $password = "167200216";
-  private static $database = "paroly";
+  private static $database = "wikipedia";
   private static $connection;
 
   public static function getconnection() {
