@@ -29,3 +29,30 @@ function isLight(){
 if(isLight()){
     toggleRootClass();
 }
+
+///////////////////////////////////////////////////////////////////////////////
+
+document.getElementById('creerC').addEventListener('click', function() {
+    document.getElementById('creeCategorie').style.display = "block";
+    document.getElementById("table").style.display = "none";
+});
+
+document.getElementById('fermerCC').addEventListener('click', function() {
+    document.getElementById('creeCategorie').style.display = "none";
+    document.getElementById("table").style.display = "block";
+});
+
+document.getElementById('modifierC').addEventListener('click', function() {
+    document.getElementById('modifierCategorie').style.display = "block";
+    document.getElementById("table").style.display = "none";
+
+});
+
+document.getElementById('fermerCM').addEventListener('click', function() {
+    document.getElementById('modifierCategorie').style.display = "none";
+    document.getElementById("table").style.display = "block";
+    
+});
+
+
+modifierCategorie
