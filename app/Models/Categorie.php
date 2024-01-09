@@ -57,4 +57,33 @@ class Categorie {
         }
     }
 
+    public function modifierCategorie($idCategorie,$nameCategorie){
+        try{
+
+            $query = "UPDATE categories SET nameCategorie = ? WHERE idCategorie = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1,$nameCategorie);
+            $stmt->bindParam(2,$idCategorie);
+            return $stmt->execute();
+
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
+    
+    public function supprimerCategorie($idCategorie){
+        try{
+
+            $query = "DELETE FROM categories  WHERE idCategorie = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1,$idCategorie);
+            return $stmt->execute();
+
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
+
 }

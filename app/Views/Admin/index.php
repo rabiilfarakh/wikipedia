@@ -46,7 +46,7 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link list-group-item list-group-item-action">
+                                <a href="#" class="sidebar-link list-group-item list-group-item-action" id="supprimerC">
                                     <span>Supprimer catégorie</span>
                                 </a>
                             </li>
@@ -59,23 +59,36 @@
                     </a>
                         <ul id="tags" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link list-group-item list-group-item-action ">
+                                <a href="#" class="sidebar-link list-group-item list-group-item-action " id="creerT">
                                     <span>Ajouter tag</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link list-group-item list-group-item-action ">
+                                <a href="#" class="sidebar-link list-group-item list-group-item-action " id="modifierT">
                                     <span>Modifier tag</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link list-group-item list-group-item-action ">
+                                <a href="#" class="sidebar-link list-group-item list-group-item-action " id="supprimerT">
                                     <span>Supprimer tag</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-
+                    <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed text-info" data-bs-target="#archive" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="fa-solid fa-sliders pe-2 text-secondary"></i>
+                        Gestion wikis
+                    </a>
+                        <ul id="archive" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link list-group-item list-group-item-action " id="archiver">
+                                    <span>Archiver wiki</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed text-info" data-bs-target="#auth" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-regular fa-user pe-2 text-secondary"></i>
@@ -210,48 +223,10 @@
                         </div>
                     </div>
 
-                    <!-- --------------------------------gestion des categories--------------------------------- -->
-                    <!-- ajouter categorie -->
-                    <div id="creeCategorie" style=" display:none">
-                        <div class="form-container bg-white d-flex flex-column align-items-center justify-content-center" style="border-radius:10px; width: 28vw; height:16vw;">
-                        <div class="close-button " style="margin-top:-30px; margin-left:24vw; font-size: 26px; cursor:pointer" id="fermerCC">X</div>
-                        <div class="d-flex justify-content-center flex-column gap-3" style="margin-top: 0px;">
-                            <h2>Ajouter Catégorie</h2>
-                            <form method="POST" action="../categories/addCategorie" class="d-flex justify-content-center flex-column">
-                                <label for="nomCategorie">Nom de Catégorie:</label>
-                                <input type="text" id="nomCategorie" name="nomCategorie"><br>
-                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 6vw" type="submit" name="creerCat">Ajouter</button>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                    <!-- modifier categorie -->
-                    <div id="modifierCategorie" style=" display:none">
-                        <div class="form-container bg-white d-flex flex-column align-items-center justify-content-center" style="border-radius:10px; width: 28vw; height:22vw;">
-                        <div class="close-button " style="margin-top:-30px; margin-left:24vw; font-size: 26px; cursor:pointer" id="fermerCM">X</div>
-                        <div class="d-flex justify-content-center flex-column gap-3" style="margin-top: 0px;">
-                        <h2>Modifier Catégorie</h2>
-                        <form method="POST" action="" class="d-flex justify-content-center flex-column">
-                            <label>Sélectionnez la catégorie à modifier :</label>
-                            <select id="idCategorieModification" name="idCategorieModification" class="form-control">
-                                <?php
-                                foreach($data["categories"] as $categorie) {
-                                    echo "<option value='{$categorie->__get('idCategorie')}'>{$categorie->__get('nameCategorie')}</option>";
-                                    }
-                                ?>
-                            </select><br>
-                            <label for="nouveauNomCategorie">Nouveau nom de la catégorie :</label>
-                            <input type="text" id="nouveauNomCategorie" name="nouveauNomCategorie" class="form-control"><br>
-                            <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 6vw" type="submit" name="modifierCat">Modifier</button>
-                        </form>
-                        </div>
-                        </div>
-                    </div>
-                    <!-- supprimer categorie -->
-                    <!-- --------------------------------gestion des tags--------------------------------- -->
-                    <!-- ajouter tag -->
-                    <!-- supprimer tag -->
-                    <!-- modifier tag -->
+                  <!-- crud front -->
+                  <?php 
+                    require_once __DIR__ . '/../../Views/components/crud.php';
+                    ?>
 
                 </div>
             </main>
