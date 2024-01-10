@@ -4,10 +4,14 @@
   width: 415px;
   padding: 8% 0 0;
   margin: auto;
+  justify-content: center;
+  display: flex;
+
 }
 .form {
   position: relative;
-  width: 25vw;
+  min-width: 350px;
+  width: 25vw; 
   z-index: 1;
   background: #FFFFFF;
   padding: 40px;

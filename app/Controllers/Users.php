@@ -11,10 +11,8 @@ class Users extends Controller {
     }
 
     public function checkSignup(){
-        if (isset($_POST['inscrire'])) {
+        if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['pwd']) && isset($_POST['tryPwd'])) {
             
-            if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['pwd']) && !empty($_POST['tryPwd'])){
-
                 if($_POST['pwd'] == $_POST['tryPwd']){
 
                     $userObject = $this->model("user");
@@ -23,48 +21,49 @@ class Users extends Controller {
                     if ($result) {
                         $this->view("authentification/login");
                     } else {
-                        echo "<script>alert('erreur lors de l'insertion');</script>";
                         $this->view("authentification/signup");
                     }
                 }else{
-                    echo "<script>alert('mot de passe incorrecte');</script>";
                     $this->view("authentification/signup");
                 }
          }else{
-            echo "<script>alert('veuillez remplire tous les champs');</script>";
             $this->view("authentification/signup");
-         }
         }
     }
 
     public function checkLogin() {
-        if (isset($_POST['login'])) {
-            $email = isset($_POST['email']) ? $_POST['email'] : '';
-            $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : '';
-    
-            if (!empty($email) && !empty($pwd)) {
+        
+            if (isset($_POST['email']) && isset($_POST['pwd'])) {
+                
                 $userObject = $this->model("user");
-                $result = $userObject->login($email, $pwd);
+                $result = $userObject->login($_POST['email'], $_POST['pwd']);
     
                 if (is_array($result) && count($result) > 0) {
 
                         if ($result['role'] == "admin") {
-                            $this->view("admin/index");
+                            $_SESSION['user'] = "admin";
+                            header('location: http://localhost/wikipedia/public/admins/index');
                         } else {
                             $this->view("auteur/index");
+                            $_SESSION["user"]= "auteur";
+                            header('location: http://localhost/wikipedia/public/auteurs/index');
                         }
 
                     }else{
-                        echo "<script>alert('email ou mot de passe incorrect');</script>";
-                        $this->view("authentification/login");
+                        header('location: http://localhost/wikipedia/public/users/login');
                     }
                 } else {
-                     echo "<script>alert('veullez remplire tous les champs');</script>";
-                     $this->view("authentification/login");
+                     header('location: http://localhost/wikipedia/public/users/login');
                 }
-
-        }
     }
+    
+    public function logout(){
+        session_start();
+        session_destroy();
+        header('location: http://localhost/wikipedia/public/users/login');
+        $this->view("authentification/login");
+    }
+
     
 }
 

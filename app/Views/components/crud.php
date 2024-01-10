@@ -9,7 +9,7 @@
                             <form method="POST" action="../categories/addCategorie" class="d-flex justify-content-center flex-column">
                                 <label for="nomCategorie">Nom de Catégorie:</label>
                                 <input type="text" id="nomCategorie" name="nomCategorie"><br>
-                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 6vw" type="submit" name="creerCat">Ajouter</button>
+                                <button class="btn btn-light btn-outline-dark bg-info" style="border-radius: 10px; width: 6vw" type="submit" name="creerCat">Ajouter</button>
                             </form>
                         </div>
                         </div>
@@ -31,7 +31,7 @@
                             </select><br>
                             <label for="nouveauNomCategorie">Nouveau nom de la catégorie :</label>
                             <input type="text" id="nouveauNomCategorie" name="nouveauCategorie" class="form-control"><br>
-                            <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 6vw" type="submit" name="modifierCat">Modifier</button>
+                            <button class="btn btn-light btn-outline-dark bg-info" style="border-radius: 10px; width: 6vw" type="submit" name="modifierCat">Modifier</button>
                         </form>
                         </div>
                         </div>
@@ -51,7 +51,7 @@
                                         }
                                     ?>
                                 </select><br>
-                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 7vw" type="submit" name="supprimerCat">Supprimer</button>
+                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 7vw; background-color:red" type="submit" name="supprimerCat">Supprimer</button>
                             </form>
                         </div>
                         </div>
@@ -66,7 +66,7 @@
                             <form method="POST" action="../Tags/addTag" class="d-flex justify-content-center flex-column">
                                 <label for="nomTag">Nom de Tag:</label>
                                 <input type="text" id="nomTag" name="nomTag"><br>
-                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 6vw" type="submit" name="creerTag">Ajouter</button>
+                                <button class="btn btn-light btn-outline-dark bg-info" style="border-radius: 10px; width: 6vw" type="submit" name="creerTag">Ajouter</button>
                             </form>
                         </div>
                         </div>
@@ -88,7 +88,7 @@
                             </select><br>
                             <label for="nouveauNomTag">Nouveau nom de la Tag :</label>
                             <input type="text" id="nouveauNomTag" name="nouveauTag" class="form-control"><br>
-                            <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 6vw" type="submit" name="modifierTag">Modifier</button>
+                            <button class="btn btn-light btn-outline-dark bg-info" style="border-radius: 10px; width: 6vw" type="submit" name="modifierTag">Modifier</button>
                         </form>
                         </div>
                         </div>
@@ -108,7 +108,7 @@
                                         }
                                     ?>
                                 </select><br>
-                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 7vw" type="submit" name="supprimerTag">Supprimer</button>
+                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 7vw; background-color:red" type="submit" name="supprimerTag">Supprimer</button>
                             </form>
                         </div>
                         </div>

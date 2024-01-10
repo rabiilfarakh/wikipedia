@@ -7,8 +7,12 @@ class Admins extends Controller {
         $categories = $categorie->getAllCategorie();
         $tag = $this->model('Tag');
         $tags = $tag->getAllTag();
-        $this->view('Admin/index',$data=["categories" => $categories , "tags" => $tags ]);
+        $user = $this->model('User');
+        $users = $user->getAllUser();
+        $totaleUser = $user->totaleUser();
+        $this->view('Admin/index',$data=["categories" => $categories , "tags" => $tags , "users" => $users , "totaleUser" => $totaleUser]);
     }
+
 
 
     

@@ -1,3 +1,7 @@
+<?php 
+if(!isset($_SESSION['user']))
+    header('location: http://localhost/wikipedia/public/users/login');
+?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -96,9 +100,11 @@
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link list-group-item list-group-item-action ">
+                                <form method="POST" action="../users/logout">
+                                <button name="deconnecter" class="sidebar-link list-group-item list-group-item-action ">
                                     <span>Déconnecter</span>
-                                </a>
+                                </button>
+                                </form>
                             </li>
                             <li class="sidebar-item">
                                 <a href="#" class="sidebar-link list-group-item list-group-item-action ">
@@ -133,7 +139,7 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h4>Admin Dashboard</h4>
+                        <h4>Admin <?php echo $_SESSION['user'];?></h4>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 d-flex">
@@ -159,20 +165,14 @@
                                 <div class="card-body py-4">
                                     <div class="d-flex align-items-start">
                                         <div class="flex-grow-1">
-                                            <h4 class="mb-2">
-                                                $ 78.00
-                                            </h4>
                                             <p class="mb-2">
-                                                Total Earnings
+                                                Total users
                                             </p>
-                                            <div class="mb-0">
-                                                <span class="badge text-success me-2">
-                                                    +9.0%
-                                                </span>
-                                                <span class="text-muted">
-                                                    Since Last Month
-                                                </span>
-                                            </div>
+                                            <h4 class="mb-2">
+                                                <?php 
+                                               echo  $data["totaleUser"]["countUser"];
+                                                ?>
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -185,44 +185,34 @@
                             <h5 class="card-title">
                                 Basic Table
                             </h5>
-                            <h6 class="card-subtitle text-muted">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus,
-                                necessitatibus reprehenderit itaque!
-                            </h6>
                         </div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Id</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php
+                                    $count = 1;
+                                    foreach ($data["users"] as $user) {
+                                        echo "<tr>";
+                                        echo "<th scope='row'>$count</th>";
+                                        echo "<td>{$user->__get('nameUser')}</td>";
+                                        echo "<td>{$user->__get('emailUser')}</td>";
+                                        echo "<td>{$user->__get('idUser')}</td>"; 
+                                        echo "</tr>";
+                                        $count++;
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                   <!-- crud front -->
                   <?php 
                     require_once __DIR__ . '/../../Views/components/crud.php';
