@@ -1,6 +1,8 @@
 main{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap: 60px;
     margin-top: 30px;
 }
 .divT{
@@ -15,6 +17,7 @@ main{
     width: 60vw;
     display: flex;
     align-items: center;
+    margin-left: 12vw;
 }
 
 h1{
@@ -34,10 +37,91 @@ p{
     height: 24vw;
 }
 .icon{
-    margin-top: -370px;
+    margin-top: -400px;
     margin-left: 100px;
     cursor: pointer;
 }
 .icon :hover{
     color: blue;
 }
+.categories{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+#btn{
+    border: solid 0px black ;
+    background: #e7ede8;
+    width: 120px;
+    height: 40px;
+    border-radius: 0px;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 22px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.categories button:hover{
+    color: rgb(89, 89, 89);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .popup-content form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    width: 26vw;
+    height: auto;
+  }
+  .popup-content form select{
+    border: solid 1px black;
+    width: 24vw;
+    height: 36px;
+  }
+  .popup-content form input{
+    border: solid 1px black;
+    width: 24vw;
+    height: 36px;
+    padding: 16px;
+  }
+  .popup-content form textarea{
+    border: solid 1px black;
+    width: 16vw;
+    height: 6vw;
+    padding: 4px;
+  }
+  .popup-content form button{
+    border: solid 1px black;
+    width: 100px;
+    height: 30px;
+  }
+  #fermer{
+    margin-top: 20px;
+    border: solid 1px black;
+    width: 100px;
+    height: 30px;
+    float: right;
+  }
+  .popup-content form button:hover{
+    background-color: black;
+    color: white;
+  }
+  #fermer:hover{
+    background-color: rgb(255, 0, 0);
+    color: white;
+  }
