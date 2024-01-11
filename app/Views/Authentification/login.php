@@ -24,15 +24,7 @@ require_once __DIR__ . '/../../Views/components/header.php';
 </div>
 
 
-    <script src="./../../public/assets/js/login.js"></script>
-  
-
-
-
-
-
-
-
+<script src="./../../public/assets/js/login.js"></script>
 
 <script src="./../../public/assets/js/regex.js"></script>
   

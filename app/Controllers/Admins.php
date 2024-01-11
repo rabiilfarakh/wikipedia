@@ -10,7 +10,11 @@ class Admins extends Controller {
         $user = $this->model('User');
         $users = $user->getAllUser();
         $totaleUser = $user->totaleUser();
-        $this->view('Admin/index',$data=["categories" => $categories , "tags" => $tags , "users" => $users , "totaleUser" => $totaleUser]);
+        if(isset($_SESSION['user']) && isset($_SESSION['id']))
+            $this->view('Admin/index',$data=["categories" => $categories , "tags" => $tags , "users" => $users , "totaleUser" => $totaleUser]);
+        else
+            header('location: http://localhost/wikipedia/public/users/login');
+
     }
 
 

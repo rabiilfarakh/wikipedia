@@ -32,30 +32,26 @@ class Users extends Controller {
     }
 
     public function checkLogin() {
-        
-            if (isset($_POST['email']) && isset($_POST['pwd'])) {
-                
-                $userObject = $this->model("user");
-                $result = $userObject->login($_POST['email'], $_POST['pwd']);
+        if (isset($_POST['email']) && isset($_POST['pwd'])) {
+            $userObject = $this->model("user");
+            $user = $userObject->login($_POST['email'], $_POST['pwd']);
+            
+            if ($user !== null && password_verify($_POST['pwd'], $user->__get('pwdUser'))) {
+                $_SESSION['user'] = $user->__get('nameUser');
+                $_SESSION['id'] = $user->__get('idUser');
     
-                if (is_array($result) && count($result) > 0) {
-
-                        if ($result['role'] == "admin") {
-                            $_SESSION['user'] = "admin";
-                            header('location: http://localhost/wikipedia/public/admins/index');
-                        } else {
-                            $this->view("auteur/index");
-                            $_SESSION["user"]= "auteur";
-                            header('location: http://localhost/wikipedia/public/auteurs/index');
-                        }
-
-                    }else{
-                        header('location: http://localhost/wikipedia/public/users/login');
-                    }
-                } else {
-                     header('location: http://localhost/wikipedia/public/users/login');
+                if ($user->__get('role') == "admin") {
+                    header('location: http://localhost/wikipedia/public/admins/index');
+                } else if ($user->__get('role') == "auteur") {
+                    header('location: http://localhost/wikipedia/public/auteurs/index');
                 }
+            } else {
+         
+                echo 'Mot de passe incorrect ou utilisateur non trouvé';
+            }
+        }
     }
+      
     
     public function logout(){
         session_start();

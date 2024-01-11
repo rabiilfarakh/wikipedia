@@ -125,3 +125,22 @@ p{
     background-color: rgb(255, 0, 0);
     color: white;
   }
+  .checkbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .chek{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+  }
+  #box{
+    width: 20px;
+  }
+  .input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }

@@ -1,8 +1,7 @@
 <?php 
 require_once __DIR__ . '/../../Views/components/headerAut.php';
 
-if(!isset($_SESSION['user']))
-    header('location: http://localhost/wikipedia/public/users/login');
+
 ?>
 
 
@@ -45,9 +44,9 @@ if(!isset($_SESSION['user']))
   <!-- Popup -->
   <div class="popup" id="popup">
     <div class="popup-content">
-      <form action="" method="POST">
+      <form action="CreerWiki" method="POST">
         <label>Sélectionnez la Catégorie :</label>
-          <select id="idTagModification" name="selectTag" class="form-control">
+          <select  name="selectCat" class="form-control">
           <?php
             foreach($data["categories"] as $categorie) {
               echo "<option value='{$categorie->__get('idCategorie')}'>{$categorie->__get('nameCategorie')}</option>";
@@ -55,10 +54,22 @@ if(!isset($_SESSION['user']))
             ?>
           </select>
         <label for="wikiTitle">Titre du Wiki:</label>
-        <input type="text" id="wikiTitle" name="wikiTitle" placeholder="Exemple :   ">
+        <input type="text" id="wikiTitle" name="titre" placeholder="Exemple :   ">
         <label for="wikiContent">Contenu du Wiki:</label>
-        <textarea id="wikiContent" name="wikiContent" placeholder="Texte"></textarea>
-        <button type="submit">Créer Wiki</button>
+        <textarea id="wikiContent" name="content" placeholder="Texte"></textarea>
+        <label for="tags">Tags du Wiki:</label> 
+        <div class="checkbox">
+          
+          <?php
+            foreach($data["tags"] as $tag) {
+              echo '<div class="chek">';
+              echo '<input  id="box" type="checkbox" value="'.$tag->__get('idTag').'" name="tag[]">';
+              echo $tag->__get('nameTag');
+              echo "</div>";
+            }
+        ?>
+        </div>
+        <button type="submit" name="creerWiki">Créer Wiki</button>
       </form>
       <button id = "fermer" onclick="closePopup()">Fermer</button>
     </div>

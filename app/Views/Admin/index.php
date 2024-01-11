@@ -1,7 +1,7 @@
 <?php 
-if(!isset($_SESSION['user']))
-    header('location: http://localhost/wikipedia/public/users/login');
-?>
+// if(!isset($_SESSION['user']))
+//     header('location: http://localhost/wikipedia/public/users/login');
+// ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 

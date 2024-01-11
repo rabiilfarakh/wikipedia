@@ -11,6 +11,7 @@ class Wiki {
     private $statut;
     private $idUser;
     private $idCategorie;
+    private $image;
     private $db;
 
     public function __construct() {
@@ -52,6 +53,12 @@ class Wiki {
                 $Wiki = new Wiki();
                 $Wiki->__set('idWiki', $row['idWiki']);
                 $Wiki->__set('nameWiki', $row['nameWiki']);
+                $Wiki->__set('contentWiki', $row['contentWiki']);
+                $Wiki->__set('dateWiki', $row['dateWiki']);
+                $Wiki->__set('statut', $row['statut']);
+                $Wiki->__set('idUser', $row['idUser']);
+                $Wiki->__set('idCategorie', $row['idCategorie']);
+                $Wiki->__set('image', $row['image']);
                 
                 $Wikis[] = $Wiki;
             }
