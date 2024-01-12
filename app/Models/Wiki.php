@@ -139,6 +139,37 @@ class Wiki {
         }
     }
 
+    public function search($input){
+        try{
+            $query = "SELECT w.*,w.image FROM wikis w
+            JOIN categories c ON c.idCategorie = w.idCategorie
+            JOIN tags_wikis tw ON tw.idWiki = w.idWiki 
+            JOIN tags t ON t.idTag = tw.idTag
+            WHERE  w.nameWiki LIKE :input OR c.nameCategorie LIKE :input OR t.nameTag LIKE :input";
+    
+            $stmt = $this->db->prepare($query);
+            $inputParam =  $input . '%'; 
+            $stmt->bindParam(':input', $inputParam, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $Wikis = [];
+    
+            foreach ($result as $row) {
+                $Wiki = new Wiki();
+                $image = $row['image'];
+                $image64 = base64_encode($image);
+                $Wiki->__set('nameWiki', $row['nameWiki']);
+                $Wiki->__set('image', $image64);
+                $Wikis[] = $Wiki;
+            }
+            return $Wikis;
+    
+        } catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+    
+
 
 
 

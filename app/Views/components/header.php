@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./../../public/assets/css/signup.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Gn5384xqQ1P5TT3I5Z4iMXskFq2exzYmbwJG4a7kS/eVhvoiRyjq8tD4g7NNSGcxhOvLbbXvcGrZbYFQ8EyW3A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -20,8 +20,8 @@
                 <img class ="h-14" src="/wikipedia/public/assets/img/wikipedia.png">
             </div>
             <div class="serach">
-                <input class="border-solid border w-80 h-8 p-4 border-black" type="search" id="site-search" name="search" placeholder='Rechercher sur Wikipédia' />
-                <button class="border-solid border h-8 w-28 border-black text-black bg-[#f0f0f0]  ">Rechercher</button>
+                <input class="border-solid border w-80 h-8 p-4 border-black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
+                <!-- <button class="border-solid border h-8 w-28 border-black text-black bg-[#f0f0f0]  ">Rechercher</button> -->
             </div>
         </div>
         <div class="nav-links mr-12">
@@ -36,3 +36,5 @@
         </div>
     </div>
 </nav>
+
+<script src="./../../public/assets/js/search.js"></script>

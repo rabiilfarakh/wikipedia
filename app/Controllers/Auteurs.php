@@ -79,15 +79,21 @@ public function more(){
     }
 }
 
-    public function update(){
-        if (isset($_POST['update'])) {
-            $wiki = $this->model('wiki');
-            $result = $wiki->update($_POST['update']);
+    // public function update(){
+    //     if (isset($_POST['update'])) {
+    //         $wiki = $this->model('wiki');
+    //         $result = $wiki->update($_POST['update']);
 
+    // }
+    // }
+
+    public function searchAjax(){
+        $wiki = $this->model('Wiki');
+        $wikis = $wiki->search($_POST['input']);
+        $this->view('Auteur/search', $data=["wikis" => $wikis]);
     }
 
-    
-    
-    }
+
+
 
 } 
