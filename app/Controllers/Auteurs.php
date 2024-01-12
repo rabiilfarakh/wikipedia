@@ -8,8 +8,10 @@ class Auteurs extends Controller {
         $categories = $categorie->getAllCategorie();
         $tag = $this->model('Tag');
         $tags = $tag->getAllTag();
+        $wiki = $this->model('Wiki');
+        $wikis = $wiki->getAllWiki();
         if(isset($_SESSION['user']) && isset($_SESSION['id']))
-            $this->view('Auteur/index',$data=["categories" => $categories , "tags" => $tags]);
+            $this->view('Auteur/index',$data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
         else
             header('location: http://localhost/wikipedia/public/users/login');
         
@@ -38,6 +40,21 @@ class Auteurs extends Controller {
             }
         }
     }
+
+    public function deleteWiki(){
+        if (isset($_POST["deleteWiki"])) {
+            $wikiObject = $this->model('auteur');
+            $wikiObject->deleteWiki($_POST['deleteWiki']);
+
+            if ($wikiObject->deleteWiki($_POST['deleteWiki']) == true) {
+                echo '<script>alert("wiki supprimé avec succé");</script>';
+                echo "<script>setTimeout(function(){ window.location.href = '/wikipedia/public/auteurs/index'; }, 100);</script>";
+            }else{
+                echo '<script>alert("erreur lors de suppression de wiki");</script>';
+                echo "<script>setTimeout(function(){ window.location.href = '/wikipedia/public/auteurs/index'; }, 100);</script>";
+            }
+    }
+}
     
     
 

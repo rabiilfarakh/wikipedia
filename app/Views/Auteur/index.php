@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
 
 <main class=" ">
   <section class="categories">
+    <div class="categorie">
     <?php
       foreach ($data["categories"] as $categorie) {
     ?>
@@ -14,32 +15,47 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
     <?php
       } 
     ?>
+    </div>
+    <div class="icon" id="openPopup">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg>
+    </div>
   </section>
+  <?php 
+      foreach($data["wikis"] as $wiki){
+    ?>
   <section class="divT">
+
     <div class="article">
       <div style="width: 60%;" class="div1">
-        <h1 style="font-size: 50px;"><strong>DEMO POST WIKI AUTEUR</strong></h1>
-        <h2 style="font-size: 20px;">Written by <strong>BTemplates</strong>  on <strong>11:24 AM</strong>  in Blogger, Images, Tag </h2>
+        <h1 style="font-size: 50px;"><strong><?php echo $wiki->__get('nameWiki') ?></strong></h1>
+        <h2 style="font-size: 20px;">Written by <strong><?php echo $wiki->__get('nameUser') ?></strong>  on <strong><?php echo $wiki->__get('dateWiki') ?></strong>  in Blogger, Images, Tag </h2>
         <p>
-          Aquarium. Photo by Francisco.Nordic is the template number 4667 in BTemplates,
-          where a total of 51 499 782 templates has been downloaded so far since 2008. 
-          This template was created by NBThemes and is the 112th template published in BTemplates.
-          com by this author.Download Nordic and more Blogger Templates...
+          <?php echo $wiki->__get('contentWiki') ?>
         </p>
+        <?php
+          if($_SESSION['id'] == $wiki->__get('idUser')){
+        ?>
+        <form method="POST" action="modifierWiki">
+          <button name="modifierWiki" value="<?php echo $wiki->__get('idWiki') ?>"  style="cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Modifer</button>
+        </form>
+        <form  method="POST" action="deleteWiki">
+          <button name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>
+        </form>
+        <?php } ?>
       </div>
       <div style="width: 40%;" class="div2">
         <img src = "./../../public/assets/img/wiki2.jpg">
         <a style="text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Read More</a>
       </div>
     </div>
-      <div class="icon" id="openPopup">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-        </svg>
-      </div>
+
+
     </div>
   </section>
+      <?php  } ?>
 
   <!-- Popup -->
   <div class="popup" id="popup">

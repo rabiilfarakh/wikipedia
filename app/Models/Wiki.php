@@ -12,6 +12,7 @@ class Wiki {
     private $idUser;
     private $idCategorie;
     private $image;
+    private $nameUser;
     private $db;
 
     public function __construct() {
@@ -43,7 +44,8 @@ class Wiki {
     public function getAllWiki() {
 
         try {
-            $query = "SELECT * FROM Wikis";
+            $query = "SELECT w.* , u.nameUser , u.idUser from utilisateurs u 
+                    join wikis w on u.idUser = w.idUser";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,7 +61,7 @@ class Wiki {
                 $Wiki->__set('idUser', $row['idUser']);
                 $Wiki->__set('idCategorie', $row['idCategorie']);
                 $Wiki->__set('image', $row['image']);
-                
+                $Wiki->__set('nameUser', $row['nameUser']);
                 $Wikis[] = $Wiki;
             }
             return $Wikis;
@@ -69,33 +71,23 @@ class Wiki {
         }
     }
 
-    public function modifierWiki($idWiki,$nameWiki){
-        try{
+    // public function deleteWiki($idWiki){
+    //     try {
+    //         $query = "DELETE FROM tags_wikis WHERE idWiki = ?";
+    //         $stmt = $this->db->prepare($query);
+    //         $stmt->bindParam(1, $idWiki);
+    //         $stmt->execute();
 
-            $query = "UPDATE wikis SET nameWiki = ? WHERE idWiki = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(1,$nameWiki);
-            $stmt->bindParam(2,$idWiki);
-            return $stmt->execute();
-
-        }catch(PDOException $ex){
-            die("Error in finding by a column: " . $ex->getMessage());
-        }
-    }
+    //         $query2 = "DELETE FROM wikis WHERE idWiki = ?";
+    //         $stmt2 = $this->db->prepare($query2); 
+    //         $stmt2->bindParam(1, $idWiki);
+    //         return $stmt->execute();
+    //     } catch (PDOException $ex) {
+    //         die("Error in finding by a column: " . $ex->getMessage());
+    //     }
+    // }
+    
 
     
-    public function supprimerWiki($idWiki){
-        try{
-
-            $query = "DELETE FROM wikis  WHERE idWiki = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(1,$idWiki);
-            return $stmt->execute();
-
-        }catch(PDOException $ex){
-            die("Error in finding by a column: " . $ex->getMessage());
-        }
-    }
-
 
 }

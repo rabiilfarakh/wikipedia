@@ -52,6 +52,25 @@ class Auteur extends User{
         }
     }
 
+    public function deleteWiki($idWiki){
+        try{
+
+            $query = "DELETE FROM tags_wikis  WHERE idWiki = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1,$idWiki);
+            $stmt->execute();
+
+            $query2 = "DELETE FROM wikis  WHERE idWiki = ?";
+            $stmt2 = $this->db->prepare($query2);
+            $stmt2->bindParam(1,$idWiki);
+            
+            return $stmt2->execute();
+
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
 
 
 }
