@@ -47,8 +47,11 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
         <?php } ?>
       </div>
       <div style="width: 40%;" class="div2">
-        <img src = "./../../public/assets/img/wiki2.jpg">
-        <a style="text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Read More</a>
+      
+        <img src = "data:image/jpeg;base64,<?php echo $wiki->__get('image')?>">
+        <form method="POST" action="more">
+          <button value="<?php echo $wiki->__get('idWiki')?>" name="more" style="text-decoration: underline; float:right ; padding: 0 36px 26px ">Read More</button>
+        </form>
       </div>
     </div>
 
@@ -60,7 +63,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
   <!-- Popup -->
   <div class="popup" id="popup">
     <div class="popup-content">
-      <form action="CreerWiki" method="POST">
+      <form action="CreerWiki" method="POST" enctype="multipart/form-data">
         <label>Sélectionnez la Catégorie :</label>
           <select  name="selectCat" class="form-control">
           <?php
@@ -71,6 +74,8 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
           </select>
         <label for="wikiTitle">Titre du Wiki:</label>
         <input type="text" id="wikiTitle" name="titre" placeholder="Exemple :   ">
+        <label for="wikiTitle">Image du Wiki:</label>
+        <input id="file"  type="file" name="myFile" class="drop-zone__input mb-3" multiple> 
         <label for="wikiContent">Contenu du Wiki:</label>
         <textarea id="wikiContent" name="content" placeholder="Texte"></textarea>
         <label for="tags">Tags du Wiki:</label> 
@@ -93,4 +98,8 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
 
 
 </main>
+<?php 
+require_once __DIR__ . '/../../Views/components/footer.php';
+?>
+
 <script src="./../../public/assets/js/auteur.js"></script>

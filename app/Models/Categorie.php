@@ -56,6 +56,7 @@ class Categorie {
             die("Error in finding by a column: " . $ex->getMessage());
         }
     }
+    
 
     public function modifierCategorie($idCategorie,$nameCategorie){
         try{

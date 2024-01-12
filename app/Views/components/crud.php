@@ -113,4 +113,23 @@
                         </div>
                         </div>
                     </div>
-                    <!-- -- -->
+                    <!-- -archiver Wiki- -->
+                    <!-- <div id="archiverWiki" style=" display:none">
+                        <div class="form-container bg-white d-flex flex-column align-items-center justify-content-center" style="border-radius:10px; width: 28vw; height:16vw;">
+                        <div class="close-button " style="margin-top:-30px; margin-left:24vw; font-size: 26px; cursor:pointer" id="fermerCS">X</div>
+                        <div class="d-flex justify-content-center flex-column gap-3" style="margin-top: 0px;">
+                            <h2>archiver Catégorie</h2>
+                            <form method="POST" action="../Wikis/archiverWiki" class="d-flex justify-content-center flex-column">
+                            <label>Sélectionnez la catégorie à archiver :</label>
+                                <select id="idWikiModification" name="selectWiki" class="form-control">
+                                    <?php
+                                    foreach($data["Wikis"] as $Wiki) {
+                                        echo "<option value='{$Wiki->__get('idWiki')}'>{$Wiki->__get('nameWiki')}</option>";
+                                        }
+                                    ?>
+                                </select><br>
+                                <button class="btn btn-light btn-outline-dark" style="border-radius: 10px; width: 7vw; background-color:red" type="submit" name="archiverWiki">archiver</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div> -->

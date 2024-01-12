@@ -22,7 +22,13 @@ class Auteurs extends Controller {
             $tags = isset($_POST['tag']) ? $_POST['tag'] : [];
 
             $auteurObject = $this->model('Auteur');
-            $lastId = $auteurObject->CreerWiki($_POST['titre'], $_POST['content'], $_SESSION['id'], $_POST['selectCat']);
+
+           if($_FILES['myFile']['error'] === UPLOAD_ERR_OK){
+            $img = $_FILES['myFile']['tmp_name'];
+            $image = file_get_contents($img);
+           }
+
+            $lastId = $auteurObject->CreerWiki($_POST['titre'], $_POST['content'], $_SESSION['id'], $_POST['selectCat'],$image);
     
             if ($lastId) {
                 foreach ($tags as $tagId) {
@@ -55,6 +61,24 @@ class Auteurs extends Controller {
             }
     }
 }
+
+public function more(){
+    if(isset($_POST['more'])){
+        $categorie = $this->model('Categorie');
+        $categories = $categorie->getAllCategorie();
+        
+        $tag = $this->model('Tag');
+        $tags = $tag->getAllTag();
+        
+        $wiki = $this->model('Wiki');
+        $wikis = $wiki->getWiki($_POST['more']);
+
+        if(isset($_SESSION['user']) && isset($_SESSION['id'])) {
+            $this->view('Auteur/wiki', $data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
+        }
+    }
+}
+
     
     
 

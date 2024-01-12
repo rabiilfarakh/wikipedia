@@ -19,14 +19,15 @@ class Auteur extends User{
         $this->$parametre = $value;
     }
 
-    public function CreerWiki($titre, $content, $idUser, $idCategorie){
+    public function CreerWiki($titre, $content, $idUser, $idCategorie , $image){
         try {
-            $query = "INSERT INTO wikis (nameWiki, contentWiki, idUser, idCategorie) VALUES (?, ?, ?, ?)";
+            $query = "INSERT INTO wikis (nameWiki, contentWiki, idUser, idCategorie,image) VALUES (?, ?, ?, ?,?)";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(1, $titre);
             $stmt->bindParam(2, $content);
             $stmt->bindParam(3, $idUser);
             $stmt->bindParam(4, $idCategorie);
+            $stmt->bindParam(5, $image);
             $stmt->execute();
 
             return  $this->db->lastInsertId();

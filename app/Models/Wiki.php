@@ -45,7 +45,8 @@ class Wiki {
 
         try {
             $query = "SELECT w.* , u.nameUser , u.idUser from utilisateurs u 
-                    join wikis w on u.idUser = w.idUser";
+                    join wikis w on u.idUser = w.idUser
+                    WHERE w.statut = 1";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,6 +54,8 @@ class Wiki {
 
             foreach ($result as $row) {
                 $Wiki = new Wiki();
+                $image = $row['image'];
+                $image64 = base64_encode($image);
                 $Wiki->__set('idWiki', $row['idWiki']);
                 $Wiki->__set('nameWiki', $row['nameWiki']);
                 $Wiki->__set('contentWiki', $row['contentWiki']);
@@ -60,7 +63,7 @@ class Wiki {
                 $Wiki->__set('statut', $row['statut']);
                 $Wiki->__set('idUser', $row['idUser']);
                 $Wiki->__set('idCategorie', $row['idCategorie']);
-                $Wiki->__set('image', $row['image']);
+                $Wiki->__set('image', $image64);
                 $Wiki->__set('nameUser', $row['nameUser']);
                 $Wikis[] = $Wiki;
             }
@@ -71,22 +74,57 @@ class Wiki {
         }
     }
 
-    // public function deleteWiki($idWiki){
-    //     try {
-    //         $query = "DELETE FROM tags_wikis WHERE idWiki = ?";
-    //         $stmt = $this->db->prepare($query);
-    //         $stmt->bindParam(1, $idWiki);
-    //         $stmt->execute();
 
-    //         $query2 = "DELETE FROM wikis WHERE idWiki = ?";
-    //         $stmt2 = $this->db->prepare($query2); 
-    //         $stmt2->bindParam(1, $idWiki);
+    public function getWiki($idWiki) {
+        try {
+            $query = "SELECT w.* , u.nameUser , u.idUser from utilisateurs u 
+                    join wikis w on u.idUser = w.idUser
+                    WHERE w.idWiki = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1,$idWiki);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $Wikis = [];
+
+            foreach ($result as $row) {
+                $Wiki = new Wiki();
+                $image = $row['image'];
+                $image64 = base64_encode($image);
+                $Wiki->__set('idWiki', $row['idWiki']);
+                $Wiki->__set('nameWiki', $row['nameWiki']);
+                $Wiki->__set('contentWiki', $row['contentWiki']);
+                $Wiki->__set('dateWiki', $row['dateWiki']);
+                $Wiki->__set('statut', $row['statut']);
+                $Wiki->__set('idUser', $row['idUser']);
+                $Wiki->__set('idCategorie', $row['idCategorie']);
+                $Wiki->__set('image', $image64);
+                $Wiki->__set('nameUser', $row['nameUser']);
+                $Wikis[] = $Wiki;
+            }
+            return $Wikis;
+
+        } catch (PDOException $ex) {
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
+    // public function archiverWiki($idWiki){
+    //     try{
+
+    //         $query = "UPDATE wikis SET statut = 0
+    //                 WHERE idWiki = ?";
+    //         $stmt = $this->db->prepare($query);
+    //         $stmt->bindParam(1,$idWiki);
+            
     //         return $stmt->execute();
+
     //     } catch (PDOException $ex) {
-    //         die("Error in finding by a column: " . $ex->getMessage());
+    //         die("error in finding by a column" . $ex->getMessage());
     //     }
     // }
-    
+
+
+
 
     
 
