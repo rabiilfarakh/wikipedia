@@ -27,7 +27,6 @@
                 <form method="POST" action="searchAjax">
                     <input class="border-solid border w-80 h-4 p-4 border-black" style="color:black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
                 </form>
-                <!-- <button class="border-solid border h-8 w-28 border-black text-black bg-[#f0f0f0]">Rechercher</button> -->
                 <div id ="searchResult" class="text-black"></div>
             </div>
             
