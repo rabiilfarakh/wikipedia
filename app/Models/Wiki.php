@@ -108,20 +108,37 @@ class Wiki {
         }
     }
 
-    // public function archiverWiki($idWiki){
-    //     try{
+    public function totaleWiki(){
+        try{
+            $query = "SELECT COUNT(idWiki)  as countWiki FROM wikis";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch();
 
-    //         $query = "UPDATE wikis SET statut = 0
-    //                 WHERE idWiki = ?";
-    //         $stmt = $this->db->prepare($query);
-    //         $stmt->bindParam(1,$idWiki);
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
+    public function archiver($idWiki){
+        try{
+            $query = "UPDATE wikis
+                SET statut = 0 WHERE idWiki = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1,$idWiki);
+            $stmt->execute();
+
+            $query2 = "DELETE FROM wikis  WHERE idWiki = ?";
+            $stmt2 = $this->db->prepare($query2);
+            $stmt2->bindParam(1,$idWiki);
             
-    //         return $stmt->execute();
+            return $stmt2->execute();
 
-    //     } catch (PDOException $ex) {
-    //         die("error in finding by a column" . $ex->getMessage());
-    //     }
-    // }
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
 
 
 

@@ -86,5 +86,17 @@ class Categorie {
         }
     }
 
+    public function totaleCategorie(){
+        try{
+            $query = "SELECT COUNT(idCategorie)  as countCategorie FROM Categories";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch();
+
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
 
 }

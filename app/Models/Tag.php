@@ -85,5 +85,17 @@ class Tag {
         }
     }
 
+    public function totaleTag(){
+        try{
+            $query = "SELECT COUNT(idTag)  as countTag FROM Tags";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            return $stmt->fetch();
+
+        }catch(PDOException $ex){
+            die("Error in finding by a column: " . $ex->getMessage());
+        }
+    }
+
 
 }

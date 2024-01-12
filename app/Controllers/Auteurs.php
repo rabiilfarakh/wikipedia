@@ -79,8 +79,15 @@ public function more(){
     }
 }
 
-    
-    
+    // public function update(){
+    //     if (isset($_POST['update'])) {
+    //         $wiki = $this->model('wiki');
+    //         $result = $wiki->update($_POST['update']);
 
+    // }
+
+    
+    
+    // }
 
 } 

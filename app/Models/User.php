@@ -74,31 +74,6 @@ class User {
     
     
 
-    // public function getUser($email,$pwd){
-    //     try {
-    //         $query = "SELECT * FROM utilisateurs WHERE emailUser = ? and pwdUser = ?";
-    //         $stmt = $this->db->prepare($query);
-    //         $stmt->bindParam(':email', $email);
-    //         $stmt->bindParam(':pwd', $pwd);
-    //         $stmt->execute();
-    //         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //         $users = [];
-
-    //         foreach($result as $row){
-    //             $user = new user();
-    //             $user->__set('idUser',$row['idUser']);
-    //             $user->__set('nameUser',$row['nameUser']);
-    //             $user->__set('emailUser',$row['emailUser']);
-    //             $user->__set('pwdUser',$row['pwdUser']);
-
-    //             $users[] = $user;
-    //         }
-
-    //         return $users;
-    //     } catch (PDOException $ex) {
-    //         die("Error in finding by a column: " . $ex->getMessage());
-    //     }
-    // }
 
     public function getAllUser(){
         try {

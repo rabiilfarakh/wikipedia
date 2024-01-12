@@ -55,7 +55,6 @@ class Auteur extends User{
 
     public function deleteWiki($idWiki){
         try{
-
             $query = "DELETE FROM tags_wikis  WHERE idWiki = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(1,$idWiki);
@@ -71,6 +70,9 @@ class Auteur extends User{
             die("Error in finding by a column: " . $ex->getMessage());
         }
     }
+
+    
+
 
 
 

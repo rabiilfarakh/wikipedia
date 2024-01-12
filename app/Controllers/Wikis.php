@@ -3,14 +3,14 @@
 class Wikis extends Controller {
     
     public function archiverWiki(){
-        if (isset($_POST['archiver'])) {
+        if (isset($_POST['archiverWiki'])) {
     
-            if (!empty($_POST['archiver'])) {
+            if (!empty($_POST['selectWiki'])) {
                 $WikiObject = $this->model('Wiki');
-                $result = $WikiObject->archiverWiki($_POST['archiver']);
+                $result = $WikiObject->archiver($_POST['selectWiki']);
     
                 if ($result) {
-                    echo "<script>alert('Catégorie ajoutée avec succès');</script>";
+                    echo "<script>alert('Wiki archivé avec succès');</script>";
                     echo "<script>setTimeout(function(){ window.location.href = '/wikipedia/public/admins/index'; }, 100);</script>";
                 } else {
                     echo "<script>alert('Erreur d\'ajout');</script>";

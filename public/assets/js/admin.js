@@ -101,5 +101,18 @@ document.getElementById('fermerTS').addEventListener('click', function() {
     document.getElementById("table").style.display = "block";
     
 });
+//archiver wiki
+//supprimer Tag
+document.getElementById('archiverW').addEventListener('click', function() {
+    document.getElementById('archiverWiki').style.display = "block";
+    document.getElementById("table").style.display = "none";
+
+});
+
+document.getElementById('fermerWA').addEventListener('click', function() {
+    document.getElementById('archiverWiki').style.display = "none";
+    document.getElementById("table").style.display = "block";
+    
+});
 
 

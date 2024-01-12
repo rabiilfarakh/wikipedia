@@ -48,3 +48,6 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
 
 </main>
 <script src="./../../public/assets/js/auteur.js"></script>
+<?php 
+require_once __DIR__ . '/../../Views/components/footer.php';
+?>

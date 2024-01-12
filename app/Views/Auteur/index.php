@@ -26,7 +26,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
   <?php 
       foreach($data["wikis"] as $wiki){
     ?>
-  <section class="divT">
+  <section class="divT mt-5">
 
     <div class="article">
       <div style="width: 60%;" class="div1">
@@ -38,8 +38,8 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
         <?php
           if($_SESSION['id'] == $wiki->__get('idUser')){
         ?>
-        <form method="POST" action="modifierWiki">
-          <button name="modifierWiki" value="<?php echo $wiki->__get('idWiki') ?>"  style="cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Modifer</button>
+        <form method="POST" action="update">
+          <button name="update" value="<?php echo $wiki->__get('idWiki') ?>"  style="cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Modifer</button>
         </form>
         <form  method="POST" action="deleteWiki">
           <button name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>

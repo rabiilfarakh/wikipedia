@@ -86,7 +86,7 @@
                     </a>
                         <ul id="archive" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link list-group-item list-group-item-action " id="archiver">
+                                <a href="#" class="sidebar-link list-group-item list-group-item-action " id="archiverW">
                                     <span>Archiver wiki</span>
                                 </a>
                             </li>
@@ -166,11 +166,41 @@
                                     <div class="d-flex align-items-start">
                                         <div class="flex-grow-1">
                                             <p class="mb-2">
-                                                Total users
+                                                Total Users
                                             </p>
                                             <h4 class="mb-2">
                                                 <?php 
                                                echo  $data["totaleUser"]["countUser"];
+                                                ?>
+                                            </h4>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <p class="mb-2">
+                                                Total Wikis
+                                            </p>
+                                            <h4 class="mb-2">
+                                                <?php 
+                                               echo  $data["totaleWiki"]["countWiki"];
+                                                ?>
+                                            </h4>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <p class="mb-2">
+                                                Total Tags
+                                            </p>
+                                            <h4 class="mb-2">
+                                                <?php 
+                                               echo  $data["totaleTag"]["countTag"];
+                                                ?>
+                                            </h4>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <p class="mb-2">
+                                                Total Catégories
+                                            </p>
+                                            <h4 class="mb-2">
+                                                <?php 
+                                               echo  $data["totaleCategorie"]["countCategorie"];
                                                 ?>
                                             </h4>
                                         </div>
