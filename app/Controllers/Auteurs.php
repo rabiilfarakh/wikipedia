@@ -10,6 +10,7 @@ class Auteurs extends Controller {
         $tags = $tag->getAllTag();
         $wiki = $this->model('Wiki');
         $wikis = $wiki->getAllWiki();
+    
         if(isset($_SESSION['user']) && isset($_SESSION['id']))
             $this->view('Auteur/index',$data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
         else
@@ -72,12 +73,14 @@ public function more(){
         
         $wiki = $this->model('Wiki');
         $wikis = $wiki->getWiki($_POST['more']);
+        $wk = $wiki->getWiki($_POST['more']);
 
         if(isset($_SESSION['user']) && isset($_SESSION['id'])) {
-            $this->view('Auteur/wiki', $data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
+            $this->view('Auteur/wiki', $data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis , "wk" => $wk]);
         }
     }
 }
+
 
     // public function update(){
     //     if (isset($_POST['update'])) {

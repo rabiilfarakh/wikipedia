@@ -42,41 +42,43 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
   </section>
       <?php  } ?>
 
-<!-- popup -->
-      <div class="popup" id="popup">
+<<!-- popup -->
+<div class="popup" id="popup">
     <div class="popup-content">
-      <form action="CreerWiki" method="POST" enctype="multipart/form-data">
-        <label>Sélectionnez la Catégorie :</label>
-          <select value="<?php echo $wiki->__get('nameCategorie') ?>" name="selectCat" class="form-control">
-          <?php
-            foreach($data["categories"] as $categorie) {
-              echo "<option value='{$categorie->__get('idCategorie')}'>{$categorie->__get('nameCategorie')}</option>";
-            }
-            ?>
-          </select>
-        <label for="wikiTitle">Titre du Wiki:</label>
-        <input value="<?php echo $wiki->__get('nameWiki') ?>" type="text" id="wikiTitle" name="titre" placeholder="Exemple :   ">
-        <label for="wikiTitle">Image du Wiki:</label>
-        <input id="file" value="<?php echo $wiki->__get('image') ?>"   type="file" name="myFile" class="drop-zone__input mb-3" multiple> 
-        <label for="wikiContent">Contenu du Wiki:</label>
-        <textarea value="<?php echo $wiki->__get('contentWiki') ?>"  id="wikiContent" name="content" placeholder="Texte"></textarea>
-        <label for="tags">Tags du Wiki:</label> 
-        <div class="checkbox">
-          
-          <?php
-            foreach($data["tags"] as $tag) {
-              echo '<div class="chek">';
-              echo '<input  id="box" type="checkbox" value="'.$tag->__get('idTag').'" name="tag[]">';
-              echo $tag->__get('nameTag');
-              echo "</div>";
-            }
-        ?>
-        </div>
-        <button type="submit" name="creerWiki">Créer Wiki</button>
-      </form>
-      <button id = "fermer" onclick="closePopup()">Fermer</button>
+        <form action="CreerWiki" method="POST" enctype="multipart/form-data">
+            <label>Sélectionnez la Catégorie :</label>
+            <select name="selectCat" class="form-control">
+                <?php
+                foreach ($data["categories"] as $categorie) {
+                    echo "<option value='{$categorie->__get('idCategorie')}'>{$categorie->__get('nameCategorie')}</option>";
+                }
+                ?>
+            </select>
+            <label for="wikiTitle">Titre du Wiki:</label>
+            <input type="text" id="wikiTitle" name="titre" placeholder="Exemple : " value="<?php echo $wiki->__get('nameWiki') ?>">
+            <label for="wikiTitle">Image du Wiki:</label>
+            <input id="file" type="file" name="myFile" class="drop-zone__input mb-3" multiple>
+            <label for="wikiContent">Contenu du Wiki:</label>
+            <textarea id="wikiContent" name="content" placeholder="Texte"><?php echo $wiki->__get('contentWiki') ?></textarea>
+            <label for="tags">Tags du Wiki:</label>
+            <div class="checkbox">
+                <?php
+                
+                foreach ($data["tags"] as $tag) {
+                    echo '<div class="chek">';
+                    $isChecked = in_array($tag->__get('idTag'), $wiki->__get('tags')) ? 'checked' : '';
+                    echo '<input id="box" type="checkbox" value="' . $tag->__get('idTag') . '" name="tag[]" ' . $isChecked . '>';
+                    echo $tag->__get('nameTag');
+                    echo "</div>";
+                }
+                ?>
+            </div>
+            <button type="submit" name="creerWiki">Créer Wiki</button>
+        </form>
+        <button id="fermer" onclick="closePopup()">Fermer</button>
     </div>
-  </div>
+</div>
+
 
 
 
