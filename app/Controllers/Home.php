@@ -10,8 +10,9 @@ class home extends Controller {
         $tags = $tag->getAllTag();
         $wiki = $this->model('Wiki');
         $wikis = $wiki->getAllWiki();
+        $lastWikis = $wiki->lastWikis();
 
-        $this->view('Home/index',$data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
+        $this->view('Home/index',$data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis , "lastWikis" => $lastWikis]);
 
     }
 

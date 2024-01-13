@@ -59,10 +59,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
           </section>
 
               <?php  } ?>
-<?php
-// var_dump($data["lastWikis"]);
-// die();
-?>
+
    
         </div>
     
@@ -73,13 +70,12 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
             <div class="article d-flex flex-column" style="width: 100%; height:auto" >
               <div style="width: 60%;" class="div1">
                 <h1 style="font-size: 40px;"><strong><?php echo $last->__get('nameWiki') ?></strong></h1>
-                <!-- <div style="width: 20px; height:20px" class="div2"> -->
                   <img style="width: 100%; height:50%" src = "data:image/jpeg;base64,<?php echo $last->__get('image')?>">
-                  <form method="POST" action="more">
-                  <!-- </form> -->
                 </div>
                 <h2 style="font-size: 18px;">Written by <strong><?php echo $last->__get('nameUser') ?></strong>  on <strong><?php echo $last->__get('dateWiki') ?></strong>  in Blogger, Images, Tag </h2>
-                <button value="<?php echo $last->__get('idWiki')?>" name="more" style="text-decoration: underline; float:right ; padding: 0 36px 26px ;font-size:12px ">Read_More</button>
+                <form method="POST" action="more">
+                  <button value="<?php echo $last->__get('idWiki')?>" name="more" style="text-decoration: underline; float:right ; padding: 0 36px 26px ;font-size:12px ">Read_More</button>
+                </form>
               </div>
 
             
