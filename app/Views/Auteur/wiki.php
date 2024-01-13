@@ -57,13 +57,13 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
             <label for="wikiTitle">Titre du Wiki:</label>
             <input type="text" id="wikiTitle" name="titre" placeholder="Exemple : " value="<?php echo $wiki->__get('nameWiki') ?>">
             <label for="wikiTitle">Image du Wiki:</label>
-            <input id="file" type="file" name="myFile" class="drop-zone__input mb-3" multiple>
+            <input id="file" value="<?php echo $wiki->__get('image') ?>" type="file" name="myFile" class="drop-zone__input mb-3" multiple>
             <label for="wikiContent">Contenu du Wiki:</label>
             <textarea id="wikiContent" name="content" placeholder="Texte"><?php echo $wiki->__get('contentWiki') ?></textarea>
             <label for="tags">Tags du Wiki:</label>
             <div class="checkbox">
                 <?php
-                
+
                 foreach ($data["tags"] as $tag) {
                     echo '<div class="chek">';
                     $isChecked = in_array($tag->__get('idTag'), $wiki->__get('tags')) ? 'checked' : '';
@@ -73,7 +73,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
                 }
                 ?>
             </div>
-            <button type="submit" name="creerWiki">Créer Wiki</button>
+            <button type="submit" name="creerWiki">update Wiki</button>
         </form>
         <button id="fermer" onclick="closePopup()">Fermer</button>
     </div>
