@@ -24,17 +24,16 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
           if($_SESSION['id'] == $wiki->__get('idUser')){
         ?>
         <form method="POST" action="modifierWiki">
-          <button name="modifierWiki" value="<?php echo $wiki->__get('idWiki') ?>"  style="cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Modifer</button>
+          <p id="openPopup" name="modifierWiki" value="<?php echo $wiki->__get('idWiki') ?>"  style="cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Modifer</p>
         </form>
         <form  method="POST" action="deleteWiki">
-          <button name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>
+          <button  name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>
         </form>
         <?php } ?>
       </div>
       <div style="width: 40%;" class="div2">
       
         <img src = "data:image/jpeg;base64,<?php echo $wiki->__get('image')?>">
-        <a style="text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Read More</a>
       </div>
     </div>
 
@@ -43,11 +42,46 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
   </section>
       <?php  } ?>
 
+<!-- popup -->
+      <div class="popup" id="popup">
+    <div class="popup-content">
+      <form action="CreerWiki" method="POST" enctype="multipart/form-data">
+        <label>Sélectionnez la Catégorie :</label>
+          <select value="<?php echo $wiki->__get('nameCategorie') ?>" name="selectCat" class="form-control">
+          <?php
+            foreach($data["categories"] as $categorie) {
+              echo "<option value='{$categorie->__get('idCategorie')}'>{$categorie->__get('nameCategorie')}</option>";
+            }
+            ?>
+          </select>
+        <label for="wikiTitle">Titre du Wiki:</label>
+        <input value="<?php echo $wiki->__get('nameWiki') ?>" type="text" id="wikiTitle" name="titre" placeholder="Exemple :   ">
+        <label for="wikiTitle">Image du Wiki:</label>
+        <input id="file" value="<?php echo $wiki->__get('image') ?>"   type="file" name="myFile" class="drop-zone__input mb-3" multiple> 
+        <label for="wikiContent">Contenu du Wiki:</label>
+        <textarea value="<?php echo $wiki->__get('contentWiki') ?>"  id="wikiContent" name="content" placeholder="Texte"></textarea>
+        <label for="tags">Tags du Wiki:</label> 
+        <div class="checkbox">
+          
+          <?php
+            foreach($data["tags"] as $tag) {
+              echo '<div class="chek">';
+              echo '<input  id="box" type="checkbox" value="'.$tag->__get('idTag').'" name="tag[]">';
+              echo $tag->__get('nameTag');
+              echo "</div>";
+            }
+        ?>
+        </div>
+        <button type="submit" name="creerWiki">Créer Wiki</button>
+      </form>
+      <button id = "fermer" onclick="closePopup()">Fermer</button>
+    </div>
+  </div>
 
 
 
 </main>
 <script src="./../../public/assets/js/auteur.js"></script>
 <?php 
-require_once __DIR__ . '/../../Views/components/footer.php';
+// require_once __DIR__ . '/../../Views/components/footer.php';
 ?>

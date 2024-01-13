@@ -13,6 +13,8 @@ class Wiki {
     private $idCategorie;
     private $image;
     private $nameUser;
+    private $nameCategorie;
+    private $nameTag;
     private $db;
 
     public function __construct() {
@@ -77,9 +79,14 @@ class Wiki {
 
     public function getWiki($idWiki) {
         try {
-            $query = "SELECT w.* , u.nameUser , u.idUser from utilisateurs u 
-                    join wikis w on u.idUser = w.idUser
-                    WHERE w.idWiki = ?";
+            $query = "SELECT w.*, u.nameUser, u.idUser, c.nameCategorie, GROUP_CONCAT(t.nameTag) as tags
+            FROM utilisateurs u
+            JOIN wikis w ON u.idUser = w.idUser
+            JOIN categories c ON w.idCategorie = c.idCategorie
+            JOIN tags_wikis tw ON tw.idWiki = w.idWiki
+            JOIN tags t ON t.idTag = tw.idTag
+            WHERE w.idWiki = ?
+            GROUP BY w.idWiki";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(1,$idWiki);
             $stmt->execute();
@@ -99,6 +106,8 @@ class Wiki {
                 $Wiki->__set('idCategorie', $row['idCategorie']);
                 $Wiki->__set('image', $image64);
                 $Wiki->__set('nameUser', $row['nameUser']);
+                $Wiki->__set('nameCategorie', $row['nameCategorie']);
+                $Wiki->__set('nameTag', $row['nameTag']);
                 $Wikis[] = $Wiki;
             }
             return $Wikis;
