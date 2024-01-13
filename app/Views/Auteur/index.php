@@ -57,37 +57,35 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
               </div>
             </div>
           </section>
+
               <?php  } ?>
-      </div>
+<?php
+// var_dump($data["lastWikis"]);
+// die();
+?>
+   
+        </div>
     
 
-          <section class="divT mt-5 d-flex" style="width:10vw">
-            
-            <div class="article" >
+          <section class="divT mt-5 d-flex flex-column justify-content-center align-items-center" style="width:20%;">
+            <h1 style="font-size: 50px;text-decoration: underline"><strong>3 New Wikis</strong></h1>
+            <?php foreach($data["lastWikis"] as $last) {?>
+            <div class="article d-flex flex-column" style="width: 100%; height:auto" >
               <div style="width: 60%;" class="div1">
-                <h1 style="font-size: 50px;"><strong><?php echo $wiki->__get('nameWiki') ?></strong></h1>
-                <h2 style="font-size: 20px;">Written by <strong><?php echo $wiki->__get('nameUser') ?></strong>  on <strong><?php echo $wiki->__get('dateWiki') ?></strong>  in Blogger, Images, Tag </h2>
-                <p>
-                  <?php echo $wiki->__get('contentWiki') ?>
-                </p>
-                <?php
-                  if($_SESSION['id'] == $wiki->__get('idUser')){
-                ?>
+                <h1 style="font-size: 40px;"><strong><?php echo $last->__get('nameWiki') ?></strong></h1>
+                <!-- <div style="width: 20px; height:20px" class="div2"> -->
+                  <img style="width: 100%; height:50%" src = "data:image/jpeg;base64,<?php echo $last->__get('image')?>">
+                  <form method="POST" action="more">
+                  <!-- </form> -->
+                </div>
+                <h2 style="font-size: 18px;">Written by <strong><?php echo $last->__get('nameUser') ?></strong>  on <strong><?php echo $last->__get('dateWiki') ?></strong>  in Blogger, Images, Tag </h2>
+                <button value="<?php echo $last->__get('idWiki')?>" name="more" style="text-decoration: underline; float:right ; padding: 0 36px 26px ;font-size:12px ">Read_More</button>
+              </div>
 
-                <form  method="POST" action="deleteWiki">
-                  <button name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>
-                </form>
-                <?php } ?>
-              </div>
-              <div style="width: 40%;" class="div2">
-              
-                <img src = "data:image/jpeg;base64,<?php echo $wiki->__get('image')?>">
-                <form method="POST" action="more">
-                  <button value="<?php echo $wiki->__get('idWiki')?>" name="more" style="text-decoration: underline; float:right ; padding: 0 36px 26px ">Read More</button>
-                </form>
-              </div>
-            </div>
+            
+            <?php } ?>
           </section>
+
             
    
 

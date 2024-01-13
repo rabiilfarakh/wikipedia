@@ -47,7 +47,8 @@ class Users extends Controller {
                 }
             } else {
          
-                echo 'Mot de passe incorrect ou utilisateur non trouvé';
+                echo "<script>alert('Mot de passe incorrect ou utilisateur non trouvé');</script>";
+                echo "<script>setTimeout(function(){ window.location.href = '/wikipedia/public/users/login'; }, 100);</script>";
             }
         }
     }

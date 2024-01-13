@@ -10,9 +10,10 @@ class Auteurs extends Controller {
         $tags = $tag->getAllTag();
         $wiki = $this->model('Wiki');
         $wikis = $wiki->getAllWiki();
+        $lastWikis = $wiki->lastWikis();
     
         if(isset($_SESSION['user']) && isset($_SESSION['id']))
-            $this->view('Auteur/index',$data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
+            $this->view('Auteur/index',$data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis, "lastWikis" => $lastWikis]);
         else
             header('location: http://localhost/wikipedia/public/users/login');
         

@@ -60,7 +60,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
             <label for="wikiTitle">Titre du Wiki:</label>
             <input type="text" id="wikiTitle" name="titre" placeholder="Exemple : " value="<?php echo $wiki->__get('nameWiki') ?>">
             <label for="wikiTitle">Image du Wiki:</label>
-            <input id="file" value="<?php echo $wiki->__get('image') ?>" type="file" name="myFile" class="drop-zone__input mb-3" readonly>
+            <input style="height:150px;" id="file" value="data:image/jpeg;base64,<?php echo $wiki->__get('image') ?>" type="file" name="myFile" class="drop-zone__input mb-3" readonly>
 
             <label for="wikiContent">Contenu du Wiki:</label>
             <textarea id="wikiContent" name="content" placeholder="Texte"><?php echo $wiki->__get('contentWiki') ?></textarea>
