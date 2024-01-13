@@ -66,6 +66,8 @@ class Auteurs extends Controller {
     
             if ($result) {
 
+                $auteurObject->delete_tags_wikis($wikiId);
+
                 foreach ($tags as $tagId) {
                     $result2 = $auteurObject->Update_tags_wikis($tagId, $wikiId);
                     if (!$result2) {

@@ -60,16 +60,25 @@ class Auteur extends User{
     public function Update_tags_wikis($idTag,$idWiki){
         try{
 
-            $query = "DELETE FROM tags_wikis WHERE idWiki = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(1,$idWiki);
-            $stmt->execute();
-
             $query2 = "INSERT INTO tags_wikis (idTag, idWiki) VALUES (?, ?)";
             $stmt2 = $this->db->prepare($query2);
             $stmt2->bindParam(1,$idTag);
             $stmt2->bindParam(2,$idWiki);
             return $stmt2->execute();
+
+        } catch (PDOException $ex) {
+            die("error in finding by a column" . $ex->getMessage());
+        }
+    }
+
+    public function delete_tags_wikis($idWiki){
+        try{
+
+            $query = "DELETE FROM tags_wikis WHERE idWiki = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1,$idWiki);
+            $stmt->execute();
+            return $stmt->execute();
 
         } catch (PDOException $ex) {
             die("error in finding by a column" . $ex->getMessage());

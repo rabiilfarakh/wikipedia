@@ -49,7 +49,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
             <label>Sélectionnez la Catégorie :</label>
             <select name="selectCat" class="form-control">
                 <?php
-                  $wikiTags = explode(',', $wiki->__get('tags'));
+                  $wikiTags = array_map('trim', explode(',', $wiki->__get('tags')));
 
                 foreach ($data["categories"] as $categorie) {
                     $selected = ($categorie->__get('idCategorie') == $wiki->__get('idCategorie')) ? 'selected' : '';
