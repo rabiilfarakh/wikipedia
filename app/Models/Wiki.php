@@ -79,12 +79,15 @@ class Wiki {
 
     public function getWiki($idWiki) {
         try {
-
-            $query = "SELECT w.*, u.nameUser, u.idUser, c.nameCategorie
-                      FROM utilisateurs u
-                      JOIN wikis w ON u.idUser = w.idUser
-                      JOIN categories c ON w.idCategorie = c.idCategorie
-                      WHERE w.idWiki = ?";
+            $query = "SELECT w.*, u.nameUser, u.idUser, c.nameCategorie,
+            GROUP_CONCAT(t.nameTag SEPARATOR ', ') as tagNames
+            FROM utilisateurs u
+            JOIN wikis w ON u.idUser = w.idUser
+            JOIN categories c ON w.idCategorie = c.idCategorie
+            JOIN tags_wikis tw ON w.idWiki = tw.idWiki
+            JOIN tags t ON tw.idTag = t.idTag
+            WHERE w.idWiki = ?
+            GROUP BY w.idWiki";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(1, $idWiki);
             $stmt->execute();
@@ -106,22 +109,8 @@ class Wiki {
                 $Wiki->__set('image', $image64);
                 $Wiki->__set('nameUser', $row['nameUser']);
                 $Wiki->__set('nameCategorie', $row['nameCategorie']);
+                $Wiki->__set('tags', $row['tagNames']);
     
-                $tagQuery = "SELECT t.nameTag
-                             FROM tags_wikis tw
-                             JOIN tags t ON t.idTag = tw.idTag
-                             WHERE tw.idWiki = ?";
-                $tagStmt = $this->db->prepare($tagQuery);
-                $tagStmt->bindParam(1, $idWiki);
-                $tagStmt->execute();
-                $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
-    
-                $tagNames = [];
-                foreach ($tags as $tag) {
-                    $tagNames[] = $tag['nameTag'];
-                }
-    
-                $Wiki->__set('tags', $tagNames);
                 $Wikis[] = $Wiki;
             }
     

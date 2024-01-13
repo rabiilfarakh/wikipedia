@@ -37,23 +37,23 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
                 <p>
                   <?php echo $wiki->__get('contentWiki') ?>
                 </p>
-                <?php
-                  if($_SESSION['id'] == $wiki->__get('idUser')){
-                ?>
-                <form method="POST" action="update">
-                  <button name="update" value="<?php echo $wiki->__get('idWiki') ?>"  style="cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Modifer</button>
-                </form>
-                <form  method="POST" action="deleteWiki">
-                  <button name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>
-                </form>
-                <?php } ?>
+
               </div>
               <div style="width: 40%;" class="div2">
               
                 <img src = "data:image/jpeg;base64,<?php echo $wiki->__get('image')?>">
+                
                 <form method="POST" action="more">
                   <button value="<?php echo $wiki->__get('idWiki')?>" name="more" style="text-decoration: underline; float:right ; padding: 0 36px 26px ">Read More</button>
                 </form>
+                <?php
+                  if($_SESSION['id'] == $wiki->__get('idUser')){
+                ?>
+                <form  method="POST" action="deleteWiki">
+                  <button   name="deleteWiki" value="<?php echo $wiki->__get('idWiki') ?>" style=" color:red; cursor: pointer ; text-decoration: underline; float:right ; padding: 0 36px 26px " href="#">Supprimer</button>
+                </form>
+                <?php } ?>
+                
               </div>
             </div>
           </section>

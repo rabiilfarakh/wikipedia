@@ -48,6 +48,42 @@ class Auteurs extends Controller {
         }
     }
 
+
+    public function updateWiki() {
+        if (isset($_POST['updateWiki'])) {
+            $tags = isset($_POST['tag']) ? $_POST['tag'] : [];
+    
+            $auteurObject = $this->model('Auteur');
+    
+            if ($_FILES['myFile']['error'] === UPLOAD_ERR_OK) {
+                $img = $_FILES['myFile']['tmp_name'];
+                $image = file_get_contents($img);
+            }
+    
+            $wikiId = isset($_POST['wikiId']) ? $_POST['wikiId'] : null;
+    
+            $result = $auteurObject->updateWiki($_POST['titre'], $_POST['content'], $_SESSION['id'], $_POST['selectCat'], $image, $wikiId);
+    
+            if ($result) {
+
+                foreach ($tags as $tagId) {
+                    $result2 = $auteurObject->Update_tags_wikis($tagId, $wikiId);
+                    if (!$result2) {
+                        echo '<script>alert("Erreur lors de la mise à jour des tags pour le wiki.");</script>';
+                    }
+                }
+    
+                echo '<script>alert("Wiki mis à jour avec succès!");</script>';
+                echo "<script>setTimeout(function(){ window.location.href = '/wikipedia/public/auteurs/index'; }, 100);</script>";
+            } else {
+                echo '<script>alert("La mise à jour du wiki a échoué.");</script>';
+                echo "<script>setTimeout(function(){ window.location.href = '/wikipedia/public/auteurs/index'; }, 100);</script>";
+            }
+        }
+    }
+    
+    
+
     public function deleteWiki(){
         if (isset($_POST["deleteWiki"])) {
             $wikiObject = $this->model('auteur');
@@ -73,10 +109,10 @@ public function more(){
         
         $wiki = $this->model('Wiki');
         $wikis = $wiki->getWiki($_POST['more']);
-        $wk = $wiki->getWiki($_POST['more']);
 
         if(isset($_SESSION['user']) && isset($_SESSION['id'])) {
-            $this->view('Auteur/wiki', $data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis , "wk" => $wk]);
+            $this->view('Auteur/wiki', $data=["categories" => $categories , "tags" => $tags , "wikis" => $wikis]);
+            
         }
     }
 }
