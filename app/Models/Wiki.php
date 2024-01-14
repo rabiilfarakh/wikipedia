@@ -155,11 +155,13 @@ class Wiki {
 
     public function search($input){
         try{
-            $query = "SELECT w.* FROM wikis w
+            $query = "SELECT DISTINCT w.* 
+            FROM wikis w
             JOIN categories c ON c.idCategorie = w.idCategorie
             JOIN tags_wikis tw ON tw.idWiki = w.idWiki 
             JOIN tags t ON t.idTag = tw.idTag
             WHERE  w.nameWiki LIKE :input OR c.nameCategorie LIKE :input OR t.nameTag LIKE :input";
+            
     
             $stmt = $this->db->prepare($query);
             $inputParam = '%'. $input . '%'; 

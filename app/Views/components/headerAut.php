@@ -1,11 +1,10 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
@@ -16,40 +15,31 @@
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class=" justify-center">
-<nav class=" text-white shadow-lg ">
-    <div class="container mx-auto flex justify-between items-center gap-40 py-4">
-        <div class="flex gap-16 items-center ">
-            <div class=" ml-20 logo">
-                <img class ="h-14" src="/wikipedia/public/assets/img/wikipedia.png">
+
+<body class="justify-center">
+    <nav class="text-white shadow-lg" style="height: 100px; position: relative;">
+        <div class="container mx-auto flex justify-between items-center gap-40 py-4">
+            <div class="flex gap-16 items-center">
+                <div class="ml-20 logo">
+                    <img class="h-14" src="/wikipedia/public/assets/img/wikipedia.png">
+                </div>
+                <div class="search" style="position: relative;">
+                    <form method="POST" action="searchAjax">
+                        <input class="border-solid border w-80 h-4 p-4 border-black" style="color:black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
+                    </form>
+                    <div id="searchResult" class="text-black bg-white" style="position: absolute; top: 100%; left: 0; z-index: 1;"></div>
+                </div>
             </div>
-            <div class="search">
-                <form method="POST" action="searchAjax">
-                    <input class="border-solid border w-80 h-4 p-4 border-black" style="color:black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
-                </form>
-                <div id ="searchResult" class="text-black"></div>
+            <div class="nav-links mr-12">
+                <ul class="nav-list flex gap-2">
+                    <li class="nav-item hover:bg-[#e1e3e6] hover:shadow-lg py-2 px-4 rounded-3xl">
+                        <a href="/wikipedia/public/users/logout" class="nav-link text-black">Déconnecter</a>
+                    </li>
+                </ul>
             </div>
-            
         </div>
-        <div class="nav-links mr-12">
-            <ul class="nav-list flex gap-2">
-                <li class="nav-item hover:bg-[#e1e3e6] hover:shadow-lg py-2 px-4  rounded-3xl">
-                    <a href="/wikipedia/public/users/logout" class="nav-link text-black">Déconnecter</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<script src="./../../public/assets/js/search.js"></script>
+    </nav>
+    <script src="./../../public/assets/js/search.js"></script>
+</body>
 
-
-
-
-
-
-
-
-
-
-
-
+</html>
