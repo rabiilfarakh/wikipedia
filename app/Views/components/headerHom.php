@@ -14,26 +14,33 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    </style>
 </head>
 
 <body class="justify-center">
-    <nav class="text-white shadow-lg" >
+    <nav class="text-white shadow-lg" style="height: 100px; position: relative;">
         <div class="container mx-auto flex justify-between items-center gap-40 py-4">
             <div class="flex gap-16 items-center">
                 <div class="ml-20 logo">
                     <img class="h-14" src="/wikipedia/public/assets/img/wikipedia.png">
                 </div>
-                <div class="search">
+                <div class="search" style="position: relative;">
                     <form method="POST" action="searchAjax">
                         <input class="border-solid border w-80 h-4 p-4 border-black" style="color:black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
                     </form>
-                    <div id="searchResult" class="text-black"></div>
+                    <div id="searchResult" class="text-black bg-white"></div>
                 </div>
             </div>
-            <div class="nav-links mr-12">
+            <div class="nav-links mr-12 d-flex">
                 <ul class="nav-list flex gap-2">
                     <li class="nav-item hover:bg-[#e1e3e6] hover:shadow-lg py-2 px-4 rounded-3xl">
-                        <a href="/wikipedia/public/users/logout" class="nav-link text-black">Déconnecter</a>
+                        <a href="/wikipedia/public/users/signup" class="nav-link text-black">Créer un compte</a>
+                    </li>
+                </ul>
+                <ul class="nav-list flex gap-2">
+                    <li class="nav-item hover:bg-[#e1e3e6] hover:shadow-lg py-2 px-4 rounded-3xl">
+                        <a href="/wikipedia/public/users/logout" class="nav-link text-black">Se connecter</a>
                     </li>
                 </ul>
             </div>

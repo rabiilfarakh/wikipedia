@@ -19,10 +19,9 @@
             <div class=" ml-20 logo">
                 <img class ="h-14" src="/wikipedia/public/assets/img/wikipedia.png">
             </div>
-            <div class="serach">
+            <!-- <div class="serach">
                 <input class="border-solid border w-80 h-8 p-4 border-black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
-                <!-- <button class="border-solid border h-8 w-28 border-black text-black bg-[#f0f0f0]  ">Rechercher</button> -->
-            </div>
+            </div> -->
         </div>
         <div class="nav-links mr-12">
             <ul class="nav-list flex gap-2">

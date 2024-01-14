@@ -106,7 +106,7 @@ require_once __DIR__ . '/../../Views/components/headerAut.php';
         <label for="wikiContent">Contenu du Wiki:</label>
         <textarea id="wikiContent" name="content" placeholder="Texte"></textarea>
         <label for="tags">Tags du Wiki:</label> 
-        <div class="checkbox">
+        <div class="checkbox ">
           
           <?php
             foreach($data["tags"] as $tag) {

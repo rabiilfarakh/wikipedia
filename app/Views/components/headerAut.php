@@ -14,6 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    </style>
 </head>
 
 <body class="justify-center">
@@ -27,7 +29,7 @@
                     <form method="POST" action="searchAjax">
                         <input class="border-solid border w-80 h-4 p-4 border-black" style="color:black" type="search" id="search" name="search" placeholder='Rechercher sur Wikipédia' />
                     </form>
-                    <div id="searchResult" class="text-black bg-white" style="position: absolute; top: 100%; left: 0; z-index: 1;"></div>
+                    <div id="searchResult" class="text-black bg-white"></div>
                 </div>
             </div>
             <div class="nav-links mr-12">
